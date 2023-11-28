@@ -7,7 +7,7 @@ function preload(){
 }
 
 function setup() {
-  createCanvas(390, 844);
+  createCanvas(390, 644);
   textAlign(LEFT, TOP); 
 }
 
