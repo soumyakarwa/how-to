@@ -1,4 +1,4 @@
-var scene1Text = ["How to write", "a book", "a story", "an article", "a grocery list", "an enemies list", "or pretty much anything..."]; 
+var scene1Text = ["How to write", "a book", "a story", "an article", "a grocery list", "an enemies list", "pretty much anything..."]; 
 var sceneNum = 0; 
 var bodyFont; 
 
@@ -7,7 +7,7 @@ function preload(){
 }
 
 function setup() {
-  createCanvas(390, 544);
+  createCanvas(windowWidth, windowHeight);
   textAlign(LEFT, TOP); 
 }
 
