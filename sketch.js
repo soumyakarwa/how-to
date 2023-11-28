@@ -1,9 +1,11 @@
 var scene1Text = ["How to write", "a book", "a story", "an article", "a grocery list", "an enemies list", "pretty much anything..."]; 
 var sceneNum = 0; 
 var bodyFont; 
+var scene1Image; 
 
 function preload(){
   bodyFont = loadFont("./Libre_Franklin/LibreFranklin-VariableFont_wght.ttf"); 
+  scene1Image = loadImage("./assets/img.png"); 
 }
 
 function setup() {
@@ -23,12 +25,14 @@ function draw() {
 function stepOne(){
   var initialPos = {x: width/2-textWidth(scene1Text[0])/2, y: 20}; 
   var increment = {x:10, y:15}; 
+  var imgSize = 300
   fill(0); 
   textSize(12); 
   textFont(bodyFont); 
   for(let i = 0; i < scene1Text.length-1; i++){
     text(scene1Text[i], width/2-textWidth(scene1Text[i])/2, initialPos.y + increment.y*i); 
   }
+  image(scene1Image, width/2-imgSize/2, height/2-imgSize/2, imgSize, imgSize); 
   text(scene1Text[scene1Text.length-1], width/2-textWidth(scene1Text[scene1Text.length-1])/2, height-20-textSize()); 
   for(let i = 1; i < scene1Text.length-1; i++){
     lineThrough(width/2-textWidth(scene1Text[i])/2, initialPos.y + increment.y*i, scene1Text[i]); 
