@@ -1,9 +1,9 @@
-var scene1Text = ["how to write", "a book", "a story", "an article", "a grocery list", "an enemies list", "pretty much anything..."]; 
-var scene2Text = ["Step 1:", "Scavenger Hunt", "Rummage through your house to", "find a pen that works and blank",  "sheets of lined paper!", "Or maybe find a laptop," , "if you’re not pretending" , "to be a pretentious writer."]
-var scene3Text = ["Step 2:" , "The Stare-Off", "Sit down and engage in", "an intense staring contest", "with the blank paper.", "Remember, the first one to blink loses." , "If you start to see letters dancing,", "you're doing it right."]
-var scene4Text = ["Step 3:", "Write", "Begin to write." , "It doesn't matter if your" , "first draft sounds like Shakespeare",  "or a cat walking across a keyboard.", "The key is to keep", "going until you start",  "questioning your life choices."]
-var scene5Text = ["Step 4:", "Paper Toss" , "Realize that what you wrote is complete bs." , "In a fit of artistic angst,",  "crumple your paper into a ball" , "and perform a dramatic throw across the room" , "(Ctrl Alt Delete",  "should work for all" , "the laptop users)."]
-var scene6Text = ["Step 5:", "Back to Step 1" , "Repeat the process.", "With enough persistence, you'll either", "write the next big hit" , "or develop an impressive" , "collection of paper balls."]
+var scene1Text = ["how to write", "a book", "a story", "an article", "a grocery list", "an enemies list", "or pretty much anything..."]; 
+var scene2Text = ["step 1:", "scavenger hunt", "Rummage through your house to", "find a pen that works and blank",  "sheets of lined paper!", "Or maybe find a laptop," , "if you’re not pretending" , "to be a pretentious writer."]
+var scene3Text = ["step 2:" , "the stare-off", "Sit down and engage in", "an intense staring contest", "with the blank paper.", "Remember, the first one to blink loses." , "If you start to see letters dancing,", "you're doing it right."]
+var scene4Text = ["step 3:", "write", "Begin to write." , "It doesn't matter if your" , "first draft sounds like Shakespeare",  "or a cat walking across a keyboard.", "The key is to keep", "going until you start",  "questioning your life choices."]
+var scene5Text = ["step 4:", "paper toss" , "Realize that what you wrote is complete bs." , "In a fit of artistic angst,",  "crumple your paper into a ball" , "and perform a dramatic throw across the room" , "(Ctrl Alt Delete",  "should work for all" , "the laptop users)."]
+var scene6Text = ["step 5:", "rinse and repeat" , "Repeat the process.", "With enough persistence, you'll either", "write the next big hit" , "or develop an impressive" , "collection of paper balls."]
 var sceneNum = 1; 
 var bodyFont; 
 var boldFont; 
