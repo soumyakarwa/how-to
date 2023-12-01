@@ -18,10 +18,12 @@ var yIncrement = 15;
 var titleIncrement = 20;   
 var titleColor = "#650D1B"; 
 var gradientColors = ["#F5F7FA", "#B8C6DB"]; 
+var progressBars = []; 
+var progressBarLoc = {x: 0, y:0}; 
 
 function preload(){
   bodyFont = loadFont("./Noto_Serif/static/NotoSerif-Regular.ttf"); 
-  boldFont = loadFont("./Noto_Serif/static/NotoSerif-SemiBold.ttf"); 
+  boldFont = loadFont("./Noto_Serif/static/NotoSerif-Regular.ttf"); 
   scene1Image = loadImage("./assets/img.png"); 
   scene2Image = loadImage("./assets/doodles.png");
   scene3Image = loadImage("./assets/eyes.png"); 
@@ -34,11 +36,18 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   textFont(bodyFont); 
   textAlign(LEFT, TOP); 
+ progressBarLoc = {x: width - 10, y: height/2 - 50}
+  for(let i = 0; i < 5; i++){
+    var showRect = i != 4; 
+    progressBars.push(new progressBar(progressBarLoc.x, progressBarLoc.y + (25*i) + 5/2, false, titleColor, showRect)); 
+  }
 }
 
 function draw() {
-  // background("#EEF4ED");
   vertical_gradient(0, 0, width, height, gradientColors[0], gradientColors[1]); 
+  for(let i = 0; i < 5; i++){
+    progressBars[i].display(); 
+  }
   switch (sceneNum){
     case(1):
     sceneOne(); 
@@ -62,10 +71,12 @@ function draw() {
 }
 
 function sceneOne(){
+  colorBar(progressBars, 5);
   var imgSize = 300; 
   textSize(16); 
   fill(titleColor); 
-  textFont(boldFont); 
+  textFont(boldFont);
+  noStroke();  
   text(scene1Text[0], width/2-textWidth(scene1Text[0])/2, initialYPos); 
   displayText(1, scene1Text.length-1, scene1Text, initialYPos, yIncrement, 3, 12, color(0), bodyFont); 
   image(scene1Image, width/2-imgSize/2, height/2-imgSize/2, imgSize, imgSize); 
@@ -76,6 +87,7 @@ function sceneOne(){
 }
 
 function sceneTwo(){
+  colorBar(progressBars, 0);
   var imgWidth = 300; 
   var imgHeight = 400; 
   displayText(0, 2, scene2Text, initialYPos, titleIncrement, 0, 16, titleColor, boldFont); 
@@ -85,6 +97,7 @@ function sceneTwo(){
 }
 
 function sceneThree(){
+  colorBar(progressBars, 1);
   var imgWidth = 300; 
   var imgHeight = 400; 
   displayText(0, 2, scene3Text, initialYPos, titleIncrement, 0, 16, titleColor, boldFont); 
@@ -94,6 +107,7 @@ function sceneThree(){
 }
 
 function sceneFour(){
+  colorBar(progressBars, 2);
   var imgSize = 400; 
   displayText(0, 2, scene4Text, initialYPos, titleIncrement, 0, 16, titleColor, boldFont); 
   displayText(2, 6, scene4Text, initialYPos, yIncrement, 3, 12, color(0), bodyFont); 
@@ -102,6 +116,7 @@ function sceneFour(){
 }
 
 function sceneFive(){
+  colorBar(progressBars, 3);
   var imgWidth = 300; 
   var imgHeight = 300;
   displayText(0, 2, scene5Text, initialYPos, titleIncrement, 0, 16, titleColor, boldFont); 
@@ -111,6 +126,7 @@ function sceneFive(){
 }
 
 function sceneSix(){
+  colorBar(progressBars, 4);
   var imgWidth = 350; 
   var imgHeight = 350;
   displayText(0, 2, scene6Text, initialYPos, titleIncrement, 0, 16, titleColor, boldFont); 
@@ -133,6 +149,7 @@ function mousePressed(){
 }
 
 function displayText(initialIndex, finalIndex, txt, txtYLoc, yIncrement, txtLines, fontSize, c, font){
+  noStroke(); 
   fill(c); 
   textFont(font); 
   textSize(fontSize); 
@@ -150,5 +167,42 @@ function vertical_gradient(x, y, w, h, color1, color2) {
     let c = lerpColor(topColor, bottomColor, inter);
     stroke(c);
     line(x, i, x + w, i);
+  }
+}
+
+function colorBar(arr, progressBarIndex){
+  for(let i = 0; i < 5; i++){
+    arr[i].h = i == progressBarIndex; 
+  }
+}
+
+class progressBar{
+  constructor(x, y, h, c, showRect){
+    this.x = x; 
+    this.y = y;
+    this.h = h; 
+    this.c = c;
+    this.ellipseSize = 5;
+    this.rectWidth = 1; 
+    this.rectHeight = 20;
+    this.showRect = showRect; 
+  }
+
+  display(){
+    if(this.h){
+      fill(this.c); 
+      noStroke(); 
+    }
+    else{
+      noFill(); 
+      stroke(this.c); 
+    }
+    ellipse(this.x, this.y, this.ellipseSize); 
+    if(this.showRect){
+      fill(this.c); 
+      noStroke(); 
+      rect(this.x - this.rectWidth/2, this.y + this.ellipseSize/2, this.rectWidth, this.rectHeight); 
+      
+    }
   }
 }
