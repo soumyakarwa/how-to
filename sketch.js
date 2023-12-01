@@ -8,15 +8,26 @@ var sceneNum = 1;
 var bodyFont; 
 var boldFont; 
 var scene1Image;
+var scene2Image;
+var scene3Image;
+var scene4Image;
+var scene5Image;
+var scene6Image;
 var initialYPos = 20;  
 var yIncrement = 15;
 var titleIncrement = 20;   
 var titleColor = "#650D1B"; 
+var gradientColors = ["#F5F7FA", "#B8C6DB"]; 
 
 function preload(){
   bodyFont = loadFont("./Noto_Serif/static/NotoSerif-Regular.ttf"); 
   boldFont = loadFont("./Noto_Serif/static/NotoSerif-SemiBold.ttf"); 
   scene1Image = loadImage("./assets/img.png"); 
+  scene2Image = loadImage("./assets/doodles.png");
+  scene3Image = loadImage("./assets/eyes.png"); 
+  scene4Image = loadImage("./assets/writing.png"); 
+  scene5Image = loadImage("./assets/paperToss.png"); 
+  scene6Image = loadImage("./assets/loop.png"); 
 }
 
 function setup() {
@@ -26,7 +37,8 @@ function setup() {
 }
 
 function draw() {
-  background("#EEF4ED");
+  // background("#EEF4ED");
+  vertical_gradient(0, 0, width, height, gradientColors[0], gradientColors[1]); 
   switch (sceneNum){
     case(1):
     sceneOne(); 
@@ -64,37 +76,52 @@ function sceneOne(){
 }
 
 function sceneTwo(){
+  var imgWidth = 300; 
+  var imgHeight = 400; 
   displayText(0, 2, scene2Text, initialYPos, titleIncrement, 0, 16, titleColor, boldFont); 
   displayText(2, 5, scene2Text, initialYPos, yIncrement, 3, 12, color(0), bodyFont); 
   displayText(5, scene2Text.length, scene2Text, height-3*initialYPos, yIncrement, -5, 12, color(0), bodyFont); 
+  image(scene2Image, width/2-imgWidth/2, height/2-imgHeight/2, imgWidth, imgHeight); 
 }
 
 function sceneThree(){
+  var imgWidth = 300; 
+  var imgHeight = 400; 
   displayText(0, 2, scene3Text, initialYPos, titleIncrement, 0, 16, titleColor, boldFont); 
   displayText(2, 5, scene3Text, initialYPos, yIncrement, 3, 12, color(0), bodyFont); 
   displayText(5, scene3Text.length, scene3Text, height-3*initialYPos, yIncrement, -5, 12, color(0), bodyFont); 
+  image(scene3Image, width/2-imgWidth/2, height/2-imgHeight/2, imgWidth, imgHeight); 
 }
 
 function sceneFour(){
+  var imgSize = 400; 
   displayText(0, 2, scene4Text, initialYPos, titleIncrement, 0, 16, titleColor, boldFont); 
   displayText(2, 6, scene4Text, initialYPos, yIncrement, 3, 12, color(0), bodyFont); 
   displayText(6, scene4Text.length, scene4Text, height-3*initialYPos, yIncrement, -6, 12, color(0), bodyFont); 
+  image(scene4Image, width/2-imgSize/2, height/2-imgSize/2, imgSize, imgSize); 
 }
 
 function sceneFive(){
+  var imgWidth = 300; 
+  var imgHeight = 300;
   displayText(0, 2, scene5Text, initialYPos, titleIncrement, 0, 16, titleColor, boldFont); 
   displayText(2, 6, scene5Text, initialYPos, yIncrement, 3, 12, color(0), bodyFont); 
   displayText(6, scene5Text.length, scene5Text, height-3*initialYPos, yIncrement, -6, 12, color(0), bodyFont); 
+  image(scene5Image, width/2-imgWidth/2, height/2-imgHeight/2, imgWidth, imgHeight); 
 }
 
 function sceneSix(){
+  var imgWidth = 350; 
+  var imgHeight = 350;
   displayText(0, 2, scene6Text, initialYPos, titleIncrement, 0, 16, titleColor, boldFont); 
   displayText(2, 5, scene6Text, initialYPos, yIncrement, 3, 12, color(0), bodyFont); 
   displayText(5, scene6Text.length, scene6Text, height-3*initialYPos, yIncrement, -5, 12, color(0), bodyFont); 
+  image(scene6Image, width/2-imgWidth/2, height/2-imgHeight/2, imgWidth, imgHeight); 
 }
 
 function lineThrough(x, y, txt){
-  strokeWeight(0.5); 
+  strokeWeight(0.5);
+  stroke(0);  
   line(x, y+(textSize()-3), x+textWidth(txt), y+(textSize()-3)); 
 }
 
@@ -111,5 +138,17 @@ function displayText(initialIndex, finalIndex, txt, txtYLoc, yIncrement, txtLine
   textSize(fontSize); 
   for(let i = initialIndex; i < finalIndex; i++){
     text(txt[i], width/2-textWidth(txt[i])/2, txtYLoc + yIncrement*(i + txtLines)); 
+  }
+}
+
+function vertical_gradient(x, y, w, h, color1, color2) {
+  let topColor = color(color1);  
+  let bottomColor = color(color2);
+
+  for (let i = y; i <= y + h; i++) {
+    let inter = map(i, y, y + h, 0, 1); 
+    let c = lerpColor(topColor, bottomColor, inter);
+    stroke(c);
+    line(x, i, x + w, i);
   }
 }
